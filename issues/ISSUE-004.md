@@ -1,8 +1,8 @@
 # ISSUE-004 — Vue trims separators required by outer concatenations
 
 State: Investigating
-Authorized-Work: Not-Selected
-Publication-Target: Not-Selected
+Authorized-Work: Pull-Request-Implementation
+Publication-Target: New-pull-request
 External-Reference: Not published.
 Contribution-Priority: High
 Root-Cause-Confidence: High
@@ -56,8 +56,9 @@ Correct that helper under `ISSUE-007` before relying on it for this visitor.
 ## Publication-Blockers
 
 Prior art and a minimal public reproduction repository remain missing.
-The corrected helper must be verified before this visitor is migrated.
-The user has not selected implementation work or approved publication.
+The proposed dependency on `ISSUE-007` must be resolved without silently expanding implementation scope.
+The user authorized this finding's PR implementation and a new GitHub PR on 2026-10-21.
+The exact external draft and target still require review before publication.
 
 ## Next-Action
 
@@ -82,3 +83,14 @@ Observed output:
 
 Expected behavior: The resulting class value remains `"inline flex block"`.
 The disposable source-plugin harness has been removed.
+
+## Pull-Request-Implementation
+
+Branch: fix/issue-004-preserve-vue-class-separators
+Base: `upstream/main@5b27f947f5d3e6de8702dc40d4054e02fbf4cdd8`
+Scope: Preserve necessary separators in nested dynamic Vue class expressions.
+Commit: Pending.
+Push: Pending.
+Checks:
+
+- Implementation and focused regression verification are pending.

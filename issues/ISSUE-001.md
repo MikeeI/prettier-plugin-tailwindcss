@@ -1,8 +1,8 @@
 # ISSUE-001 — Class traversal rewrites comparison operands
 
 State: Investigating
-Authorized-Work: Not-Selected
-Publication-Target: Not-Selected
+Authorized-Work: Pull-Request-Implementation
+Publication-Target: New-pull-request
 External-Reference: Not published.
 Contribution-Priority: High
 Root-Cause-Confidence: High
@@ -58,7 +58,8 @@ Do not disable documented class-object key sorting as a substitute.
 ## Publication-Blockers
 
 Prior art, a minimal public reproduction repository, and an exact publication target remain unresolved.
-The user has not selected implementation work or approved any external draft.
+The user authorized this finding's PR implementation and a new GitHub PR on 2026-10-21.
+The exact external draft and target still require review before publication.
 
 ## Next-Action
 
@@ -84,3 +85,14 @@ clsx(state === "block flex" && "block flex");
 Expected behavior: The comparison operand remains `"flex block"`, while the result string may be sorted.
 The disposable harness used real dependencies with module-loading adaptations and has been removed.
 No source patch or production-state change was performed.
+
+## Pull-Request-Implementation
+
+Branch: fix/issue-001-preserve-class-conditions
+Base: `upstream/main@5b27f947f5d3e6de8702dc40d4054e02fbf4cdd8`
+Scope: Preserve comparison and condition operands across the affected class-expression visitors.
+Commit: Pending.
+Push: Pending.
+Checks:
+
+- Implementation and focused regression verification are pending.

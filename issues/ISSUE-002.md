@@ -1,8 +1,8 @@
 # ISSUE-002 — Normalized object keys overwrite independent class conditions
 
 State: Investigating
-Authorized-Work: Not-Selected
-Publication-Target: Not-Selected
+Authorized-Work: Pull-Request-Implementation
+Publication-Target: New-pull-request
 External-Reference: Not published.
 Contribution-Priority: High
 Root-Cause-Confidence: High
@@ -57,7 +57,8 @@ Preserve documented sorting for collision-free objects with fully known keys.
 ## Publication-Blockers
 
 Prior art, a minimal public reproduction repository, and compatibility review remain incomplete.
-The user has not selected implementation work or approved an external target and draft.
+The user authorized this finding's PR implementation and a new GitHub PR on 2026-10-21.
+The exact external draft and target still require review before publication.
 
 ## Next-Action
 
@@ -93,3 +94,14 @@ clsx({ "flex block": true, [key]: false })
 Replacing only the first key with `"block flex"` changes both results to `""`.
 Those additional checks evaluate the collision semantics, not a second full formatting pipeline.
 The original disposable formatting harness has been removed.
+
+## Pull-Request-Implementation
+
+Branch: fix/issue-002-preserve-object-key-identity
+Base: `upstream/main@5b27f947f5d3e6de8702dc40d4054e02fbf4cdd8`
+Scope: Preserve independent class-object property identities, including unknown spread and computed keys.
+Commit: Pending.
+Push: Pending.
+Checks:
+
+- Implementation and focused regression verification are pending.

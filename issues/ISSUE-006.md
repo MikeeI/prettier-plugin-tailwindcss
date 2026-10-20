@@ -1,8 +1,8 @@
 # ISSUE-006 — Svelte sorts token fragments across concatenation boundaries
 
 State: Investigating
-Authorized-Work: Not-Selected
-Publication-Target: Not-Selected
+Authorized-Work: Pull-Request-Implementation
+Publication-Target: New-pull-request
 External-Reference: Not published.
 Contribution-Priority: High
 Root-Cause-Confidence: High
@@ -56,7 +56,8 @@ Preserve uncertain partial concatenations instead of sorting attached token frag
 ## Publication-Blockers
 
 Prior art and a minimal public reproduction repository remain missing.
-The user has not selected implementation work or approved publication.
+The user authorized this finding's PR implementation and a new GitHub PR on 2026-10-21.
+The exact external draft and target still require review before publication.
 
 ## Next-Action
 
@@ -82,3 +83,14 @@ Observed full-pipeline output:
 
 Expected behavior: The original class-token identities remain unchanged.
 The disposable source-plugin harness has been removed.
+
+## Pull-Request-Implementation
+
+Branch: fix/issue-006-preserve-svelte-class-fragments
+Base: `upstream/main@5b27f947f5d3e6de8702dc40d4054e02fbf4cdd8`
+Scope: Preserve class-token attachment across Svelte string concatenation boundaries.
+Commit: Pending.
+Push: Pending.
+Checks:
+
+- Implementation and focused regression verification are pending.

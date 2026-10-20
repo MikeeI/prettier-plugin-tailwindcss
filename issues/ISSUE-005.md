@@ -1,8 +1,8 @@
 # ISSUE-005 — Glimmer class composition loses separators and token bindings
 
 State: Investigating
-Authorized-Work: Not-Selected
-Publication-Target: Not-Selected
+Authorized-Work: Pull-Request-Implementation
+Publication-Target: New-pull-request
 External-Reference: Not published.
 Contribution-Priority: High
 Root-Cause-Confidence: High
@@ -58,7 +58,8 @@ Leave string fragments unchanged when their class boundaries cannot be establish
 ## Publication-Blockers
 
 Prior art and a minimal public reproduction repository remain missing.
-The user has not selected implementation work or approved an external target and draft.
+The user authorized this finding's PR implementation and a new GitHub PR on 2026-10-21.
+The exact external draft and target still require review before publication.
 
 ## Next-Action
 
@@ -90,3 +91,14 @@ A second observed input exposes prefix movement:
 
 The sorted fragment becomes `"block flex underline "` and changes the attached class identity.
 The disposable source-plugin harness has been removed.
+
+## Pull-Request-Implementation
+
+Branch: fix/issue-005-preserve-glimmer-class-boundaries
+Base: `upstream/main@5b27f947f5d3e6de8702dc40d4054e02fbf4cdd8`
+Scope: Preserve separators and attached class-token fragments in Glimmer composition.
+Commit: Pending.
+Push: Pending.
+Checks:
+
+- Implementation and focused regression verification are pending.

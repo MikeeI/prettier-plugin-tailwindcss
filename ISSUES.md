@@ -13,12 +13,12 @@ Next finding ID: ISSUE-013
 
 | ID | Finding | State | Authorized-Work | Publication-Target | Contribution-Priority | Next-Action | External-Reference |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| [ISSUE-001](issues/ISSUE-001.md) | Class traversal rewrites comparison operands | Investigating | Not-Selected | Not-Selected | High | Search comparison traversal prior art | Not published. |
-| [ISSUE-002](issues/ISSUE-002.md) | Normalized object keys overwrite independent class conditions | Investigating | Not-Selected | Not-Selected | High | Search object key collision prior art | Not published. |
-| [ISSUE-003](issues/ISSUE-003.md) | Angular class rewriting drops required string escapes | Investigating | Not-Selected | Not-Selected | High | Search Angular escape loss prior art | Not published. |
-| [ISSUE-004](issues/ISSUE-004.md) | Vue trims separators required by outer concatenations | Investigating | Not-Selected | Not-Selected | High | Search Vue concatenation prior art | Not published. |
-| [ISSUE-005](issues/ISSUE-005.md) | Glimmer class composition loses separators and token bindings | Investigating | Not-Selected | Not-Selected | High | Search Glimmer composition prior art | Not published. |
-| [ISSUE-006](issues/ISSUE-006.md) | Svelte sorts token fragments across concatenation boundaries | Investigating | Not-Selected | Not-Selected | High | Search Svelte token boundary prior art | Not published. |
+| [ISSUE-001](issues/ISSUE-001.md) | Class traversal rewrites comparison operands | Investigating | Pull-Request-Implementation | New-pull-request | High | Search comparison traversal prior art | Not published. |
+| [ISSUE-002](issues/ISSUE-002.md) | Normalized object keys overwrite independent class conditions | Investigating | Pull-Request-Implementation | New-pull-request | High | Search object key collision prior art | Not published. |
+| [ISSUE-003](issues/ISSUE-003.md) | Angular class rewriting drops required string escapes | Investigating | Pull-Request-Implementation | New-pull-request | High | Search Angular escape loss prior art | Not published. |
+| [ISSUE-004](issues/ISSUE-004.md) | Vue trims separators required by outer concatenations | Investigating | Pull-Request-Implementation | New-pull-request | High | Search Vue concatenation prior art | Not published. |
+| [ISSUE-005](issues/ISSUE-005.md) | Glimmer class composition loses separators and token bindings | Investigating | Pull-Request-Implementation | New-pull-request | High | Search Glimmer composition prior art | Not published. |
+| [ISSUE-006](issues/ISSUE-006.md) | Svelte sorts token fragments across concatenation boundaries | Investigating | Pull-Request-Implementation | New-pull-request | High | Search Svelte token boundary prior art | Not published. |
 | [ISSUE-007](issues/ISSUE-007.md) | Template whitespace checks inspect the wrong quasi edges | Investigating | Not-Selected | Not-Selected | Medium | Search template edge checking prior art | Not published. |
 | [ISSUE-008](issues/ISSUE-008.md) | Whitespace domains disagree about valid class-token boundaries | Investigating | Not-Selected | Not-Selected | Medium | Search Unicode class boundary prior art | Not published. |
 | [ISSUE-009](issues/ISSUE-009.md) | Stateful regex matching skips eligible attributes and calls | Investigating | Not-Selected | Not-Selected | Medium | Search stateful matcher prior art | Not published. |
