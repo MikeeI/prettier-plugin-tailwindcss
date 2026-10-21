@@ -13,12 +13,12 @@ Next finding ID: ISSUE-013
 
 | ID | Finding | State | Authorized-Work | Publication-Target | Contribution-Priority | Next-Action | External-Reference |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| [ISSUE-001](issues/ISSUE-001.md) | Class traversal rewrites comparison operands | PR-Ready | Pull-Request-Implementation | New-pull-request | High | Approve exact pull request draft | Not published. |
-| [ISSUE-002](issues/ISSUE-002.md) | Normalized object keys overwrite independent class conditions | PR-Ready | Pull-Request-Implementation | New-pull-request | High | Approve exact pull request draft | Not published. |
-| [ISSUE-003](issues/ISSUE-003.md) | Angular class rewriting drops required string escapes | PR-Ready | Pull-Request-Implementation | New-pull-request | High | Approve exact pull request draft | Not published. |
-| [ISSUE-004](issues/ISSUE-004.md) | Vue trims separators required by outer concatenations | PR-Ready | Pull-Request-Implementation | New-pull-request | High | Approve exact pull request draft | Not published. |
-| [ISSUE-005](issues/ISSUE-005.md) | Glimmer class composition loses separators and token bindings | PR-Ready | Pull-Request-Implementation | New-pull-request | High | Approve exact pull request draft | Not published. |
-| [ISSUE-006](issues/ISSUE-006.md) | Svelte sorts token fragments across concatenation boundaries | PR-Ready | Pull-Request-Implementation | New-pull-request | High | Approve exact pull request draft | Not published. |
+| [ISSUE-001](issues/ISSUE-001.md) | Class traversal rewrites comparison operands | Submitted | Pull-Request-Implementation | New-pull-request | High | Await upstream review | https://github.com/tailwindlabs/prettier-plugin-tailwindcss/pull/478 |
+| [ISSUE-002](issues/ISSUE-002.md) | Normalized object keys overwrite independent class conditions | Submitted | Pull-Request-Implementation | New-pull-request | High | Await upstream review | https://github.com/tailwindlabs/prettier-plugin-tailwindcss/pull/479 |
+| [ISSUE-003](issues/ISSUE-003.md) | Angular class rewriting drops required string escapes | Submitted | Pull-Request-Implementation | New-pull-request | High | Await upstream review | https://github.com/tailwindlabs/prettier-plugin-tailwindcss/pull/480 |
+| [ISSUE-004](issues/ISSUE-004.md) | Vue trims separators required by outer concatenations | Submitted | Pull-Request-Implementation | New-pull-request | High | Await upstream review | https://github.com/tailwindlabs/prettier-plugin-tailwindcss/pull/481 |
+| [ISSUE-005](issues/ISSUE-005.md) | Glimmer class composition loses separators and token bindings | Submitted | Pull-Request-Implementation | New-pull-request | High | Await upstream review | https://github.com/tailwindlabs/prettier-plugin-tailwindcss/pull/482 |
+| [ISSUE-006](issues/ISSUE-006.md) | Svelte sorts token fragments across concatenation boundaries | Submitted | Pull-Request-Implementation | New-pull-request | High | Await upstream review | https://github.com/tailwindlabs/prettier-plugin-tailwindcss/pull/483 |
 | [ISSUE-007](issues/ISSUE-007.md) | Template whitespace checks inspect the wrong quasi edges | Investigating | Not-Selected | Not-Selected | Medium | Search template edge checking prior art | Not published. |
 | [ISSUE-008](issues/ISSUE-008.md) | Whitespace domains disagree about valid class-token boundaries | Investigating | Not-Selected | Not-Selected | Medium | Search Unicode class boundary prior art | Not published. |
 | [ISSUE-009](issues/ISSUE-009.md) | Stateful regex matching skips eligible attributes and calls | Investigating | Not-Selected | Not-Selected | Medium | Search stateful matcher prior art | Not published. |

@@ -1,9 +1,9 @@
 # ISSUE-002 — Normalized object keys overwrite independent class conditions
 
-State: PR-Ready
+State: Submitted
 Authorized-Work: Pull-Request-Implementation
 Publication-Target: New-pull-request
-External-Reference: Not published.
+External-Reference: https://github.com/tailwindlabs/prettier-plugin-tailwindcss/pull/479
 Contribution-Priority: High
 Root-Cause-Confidence: High
 Finding-Category: Correctness
@@ -65,14 +65,14 @@ Preserve sorting for collision-free supported static keys and keep reentry white
 
 ## Publication-Blockers
 
-Publication requires approval of the exact Publication-Draft and recorded target.
+None; the exact approved draft and target were published on 2026-10-21.
 The user authorized this finding's PR implementation and a new GitHub PR on 2026-10-21.
 
 ## Next-Action
 
-Summary: Approve exact pull request draft
-Action: Review and approve the exact Publication-Draft and its upstream/base/head target.
-Done-When: The user explicitly approves the unchanged full draft and exact target.
+Summary: Await upstream review
+Action: Review maintainer feedback when upstream responds to the submitted pull request.
+Done-When: Upstream merges, closes, or requests a concrete follow-up change.
 
 ## Bug-Reproduction
 
@@ -124,7 +124,7 @@ Target: https://github.com/tailwindlabs/prettier-plugin-tailwindcss
 Base: `main`
 Head: `MikeeI:fix/issue-002-preserve-object-key-identity`
 Title: Preserve class-object property identities during sorting
-Approval: Pending.
+Approval: Approved on 2026-10-21; user selected `Alle sechs unverändert veröffentlichen`.
 
 ```markdown
 ## Summary

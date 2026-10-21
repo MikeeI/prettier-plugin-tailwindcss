@@ -1,9 +1,9 @@
 # ISSUE-005 — Glimmer class composition loses separators and token bindings
 
-State: PR-Ready
+State: Submitted
 Authorized-Work: Pull-Request-Implementation
 Publication-Target: New-pull-request
-External-Reference: Not published.
+External-Reference: https://github.com/tailwindlabs/prettier-plugin-tailwindcss/pull/482
 Contribution-Priority: High
 Root-Cause-Confidence: High
 Finding-Category: Correctness
@@ -64,14 +64,14 @@ Leave string fragments unchanged when their class boundaries cannot be establish
 
 ## Publication-Blockers
 
-Publication requires approval of the exact Publication-Draft and recorded target.
+None; the exact approved draft and target were published on 2026-10-21.
 The user authorized this finding's PR implementation and a new GitHub PR on 2026-10-21.
 
 ## Next-Action
 
-Summary: Approve exact pull request draft
-Action: Review and approve the exact Publication-Draft and its upstream/base/head target.
-Done-When: The user explicitly approves the unchanged full draft and exact target.
+Summary: Await upstream review
+Action: Review maintainer feedback when upstream responds to the submitted pull request.
+Done-When: Upstream merges, closes, or requests a concrete follow-up change.
 
 ## Bug-Reproduction
 
@@ -118,7 +118,7 @@ Target: https://github.com/tailwindlabs/prettier-plugin-tailwindcss
 Base: `main`
 Head: `MikeeI:fix/issue-005-preserve-glimmer-class-boundaries`
 Title: Preserve token boundaries in Glimmer class composition
-Approval: Pending.
+Approval: Approved on 2026-10-21; user selected `Alle sechs unverändert veröffentlichen`.
 
 ```markdown
 ## Summary

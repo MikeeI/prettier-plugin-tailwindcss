@@ -1,9 +1,9 @@
 # ISSUE-004 — Vue trims separators required by outer concatenations
 
-State: PR-Ready
+State: Submitted
 Authorized-Work: Pull-Request-Implementation
 Publication-Target: New-pull-request
-External-Reference: Not published.
+External-Reference: https://github.com/tailwindlabs/prettier-plugin-tailwindcss/pull/481
 Contribution-Priority: High
 Root-Cause-Confidence: High
 Finding-Category: Correctness
@@ -62,15 +62,15 @@ The nested-concatenation fix does not require changing the helper under `ISSUE-0
 
 ## Publication-Blockers
 
-Publication requires approval of the exact Publication-Draft and recorded target.
+None; the exact approved draft and target were published on 2026-10-21.
 Scope reuses the existing boundary policy; the independent `ISSUE-007` defect remains unresolved.
 The user authorized this finding's PR implementation and a new GitHub PR on 2026-10-21.
 
 ## Next-Action
 
-Summary: Approve exact pull request draft
-Action: Review and approve the exact Publication-Draft and its upstream/base/head target.
-Done-When: The user explicitly approves the unchanged full draft and exact target.
+Summary: Await upstream review
+Action: Review maintainer feedback when upstream responds to the submitted pull request.
+Done-When: Upstream merges, closes, or requests a concrete follow-up change.
 
 ## Bug-Reproduction
 
@@ -110,7 +110,7 @@ Target: https://github.com/tailwindlabs/prettier-plugin-tailwindcss
 Base: `main`
 Head: `MikeeI:fix/issue-004-preserve-vue-class-separators`
 Title: Preserve separators in nested Vue class concatenations
-Approval: Pending.
+Approval: Approved on 2026-10-21; user selected `Alle sechs unverändert veröffentlichen`.
 
 ```markdown
 ## Summary
