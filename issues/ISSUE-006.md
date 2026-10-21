@@ -1,6 +1,6 @@
 # ISSUE-006 — Svelte sorts token fragments across concatenation boundaries
 
-State: Investigating
+State: PR-Ready
 Authorized-Work: Pull-Request-Implementation
 Publication-Target: New-pull-request
 External-Reference: Not published.
@@ -32,9 +32,17 @@ Severity: High.
 
 ## Prior-Art
 
-Coverage: The local index and active records were empty before allocation.
-Gaps: Upstream issues, PRs, discussions, releases, and linked forums have not been searched.
-Contribution fit: Unresolved until prior art identifies the owning Svelte expression-boundary work.
+Coverage: The Glimmer/Svelte searches recorded in `ISSUE-005` were checked on 2026-10-21.
+Relevant complete threads and the active Svelte diff were read.
+Gaps: Global discussion, release, and forum coverage is not exhaustive.
+
+- Distinct overlap: https://github.com/tailwindlabs/prettier-plugin-tailwindcss/pull/475 changes whitespace and offsets.
+- Related: https://github.com/tailwindlabs/prettier-plugin-tailwindcss/issues/474 is owned by that active whitespace PR.
+- Related: https://github.com/tailwindlabs/prettier-plugin-tailwindcss/pull/332 protects Svelte source-length invariants.
+- Related: https://github.com/tailwindlabs/prettier-plugin-tailwindcss/pull/359 prevents length-changing deduplication.
+
+Contribution fit: A separate length-preserving token-attachment PR addresses a different root cause from PR 475.
+The overlapping handlers and existing active owner must be disclosed rather than treated as a duplicate.
 
 ## Proposed-Change
 
@@ -55,15 +63,15 @@ Preserve uncertain partial concatenations instead of sorting attached token frag
 
 ## Publication-Blockers
 
-Prior art and a minimal public reproduction repository remain missing.
+Publication requires approval of the exact Publication-Draft and recorded target.
+The draft distinguishes token attachment from the overlapping whitespace/offset PR 475.
 The user authorized this finding's PR implementation and a new GitHub PR on 2026-10-21.
-The exact external draft and target still require review before publication.
 
 ## Next-Action
 
-Summary: Search Svelte token boundary prior art
-Action: Search upstream work for sorting of partial string operands in Svelte class concatenations.
-Done-When: Relevant matches are classified and an owning thread or evidence gap is recorded.
+Summary: Approve exact pull request draft
+Action: Review and approve the exact Publication-Draft and its upstream/base/head target.
+Done-When: The user explicitly approves the unchanged full draft and exact target.
 
 ## Bug-Reproduction
 
@@ -89,8 +97,56 @@ The disposable source-plugin harness has been removed.
 Branch: fix/issue-006-preserve-svelte-class-fragments
 Base: `upstream/main@5b27f947f5d3e6de8702dc40d4054e02fbf4cdd8`
 Scope: Preserve class-token attachment across Svelte string concatenation boundaries.
-Commit: Pending.
-Push: Pending.
+Commit: b9745429c57ea750f0d6d4f6c9040982fb7f1aa9
+Push: MikeeI:fix/issue-006-preserve-svelte-class-fragments
 Checks:
 
-- Implementation and focused regression verification are pending.
+- `pnpm run format --check` → passed.
+- `pnpm run lint` → passed with existing Knip configuration hints.
+- `pnpm run build` → passed.
+- `env npm_config_userconfig=/dev/null pnpm run test --run` → 112 passed, four existing skips.
+
+## Publication-Draft
+
+Target: https://github.com/tailwindlabs/prettier-plugin-tailwindcss
+Base: `main`
+Head: `MikeeI:fix/issue-006-preserve-svelte-class-fragments`
+Title: Preserve attached tokens in Svelte class concatenations
+Approval: Pending.
+
+```markdown
+## Summary
+
+Disabling whitespace collapse does not prevent sorting from moving an externally attached class token.
+In `"inline-" + "underline flex block"`, the prefix can become attached to `block` instead of `underline`.
+Accumulate concatenation edges through the complete Svelte expression path.
+Protect attached first and last tokens in both string literals and template quasis.
+Independent middle classes remain sortable.
+
+Related work: https://github.com/tailwindlabs/prettier-plugin-tailwindcss/pull/475
+This targets token attachment, not that PR's whitespace-collapse and source-offset changes.
+Existing whitespace, deduplication, and source-length policies remain unchanged.
+
+## Verification
+
+- Added a built-plugin regression with outer concatenations, nested conditionals, and both literal kinds.
+- Existing Svelte plugin-compatibility coverage passed after correcting unsafe historical expectations.
+- `pnpm run format --check`, `pnpm run lint`, and `pnpm run build` passed.
+- `pnpm run test --run`: 112 passed, four existing skips.
+
+Tested with Node.js 26.12.0, pnpm 10.28.2, and lockfile-pinned Prettier 3.9.6.
+The `src/config.ts` change is only repository-formatter normalization of an existing signature.
+
+### Disclosure
+
+Investigated thoroughly with `openai-codex/gpt-6.1-sol` (medium reasoning effort), using [Oh My Pi](https://github.com/can1357/oh-my-pi) as the agent framework.
+I thoroughly reviewed this contribution with `openai-codex/gpt-6.1-sol` (medium reasoning effort).
+
+This report is not generic or unreviewed AI-generated output.
+Its claims were checked against the cited evidence, and it includes the relevant detail intended to help maintainers resolve the issue.
+
+If reports like this are not useful to the project, please let me know and I will refrain from submitting similar ones.
+My intent is to help without wasting maintainer time or energy or discouraging their work.
+
+Thank you for your work.
+```

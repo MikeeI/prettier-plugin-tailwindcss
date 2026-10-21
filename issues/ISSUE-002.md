@@ -1,6 +1,6 @@
 # ISSUE-002 — Normalized object keys overwrite independent class conditions
 
-State: Investigating
+State: PR-Ready
 Authorized-Work: Pull-Request-Implementation
 Publication-Target: New-pull-request
 External-Reference: Not published.
@@ -14,7 +14,7 @@ Source: `upstream/main@5b27f947f5d3e6de8702dc40d4054e02fbf4cdd8`
 ## Root-Cause
 
 Audit reference: `E2`, expanded by the self-review to cover unknown object composition.
-Root-Cause [S]: Independently normalizing class-object keys can merge distinct JavaScript property identities.
+Root-Cause [S]: Independent class-key normalization can merge or split JavaScript property-identity groups.
 The visitor has no sibling-key collision check at `src/index.ts:608-613`.
 
 ## Reach-and-Impact
@@ -30,18 +30,27 @@ Severity: High.
 - [O] Actual `clsx` evaluation changes from `"flex block"` to `""` after this transformation.
 - [O] Additional real `clsx` evaluations confirm the same collision with spread and computed properties.
 - [S] A check limited to explicitly written static sibling keys cannot establish the complete runtime key set.
+- [O] A built-plugin regression reproduced Unicode-escaped duplicates splitting into distinct emitted keys.
 
 ## Prior-Art
 
-Coverage: The local index and active records were empty before allocation.
-Gaps: Upstream issues, PRs, discussions, releases, and linked forums have not been searched.
-Contribution fit: Unresolved until prior art and compatibility requirements are established.
+Coverage: The same six combined issue/PR searches recorded in `ISSUE-001` and all open PRs were checked.
+Relevant class-object, raw-escaping, and cross-string sorting threads were read on 2026-10-21.
+Gaps: Global forum, release, and discussion coverage is not exhaustive.
+
+- Related: https://github.com/tailwindlabs/prettier-plugin-tailwindcss/pull/155 establishes class-key sorting support.
+- Related: https://github.com/tailwindlabs/prettier-plugin-tailwindcss/pull/461 preserves raw string escapes.
+- Distinct: https://github.com/tailwindlabs/prettier-plugin-tailwindcss/issues/422 requests sorting across separate strings.
+
+Contribution fit: A new collision-preservation PR is distinct from the checked work.
+No direct active key-collision implementation was identified.
 
 ## Proposed-Change
 
-For objects with fully known keys, determine normalized keys before mutation and preserve colliding groups.
-Leave the object's keys unchanged when spread or computed keys prevent proving the final key set.
-Preserve documented sorting for collision-free objects with fully known keys.
+Plan actual serialized identities before mutation and preserve groups that would merge or split.
+Allow existing duplicate keys to move together only when their identity cohort stays intact.
+Treat spread/computed composition conservatively without evaluating expressions.
+Preserve sorting for collision-free supported static keys and keep reentry whitespace policy stable.
 
 ## Scope-and-Constraints
 
@@ -56,15 +65,14 @@ Preserve documented sorting for collision-free objects with fully known keys.
 
 ## Publication-Blockers
 
-Prior art, a minimal public reproduction repository, and compatibility review remain incomplete.
+Publication requires approval of the exact Publication-Draft and recorded target.
 The user authorized this finding's PR implementation and a new GitHub PR on 2026-10-21.
-The exact external draft and target still require review before publication.
 
 ## Next-Action
 
-Summary: Search object key collision prior art
-Action: Search upstream work for normalized class-object keys that overwrite independent conditions.
-Done-When: Static and dynamic collision reports are classified and the owning thread or gap is recorded.
+Summary: Approve exact pull request draft
+Action: Review and approve the exact Publication-Draft and its upstream/base/head target.
+Done-When: The user explicitly approves the unchanged full draft and exact target.
 
 ## Bug-Reproduction
 
@@ -100,8 +108,56 @@ The original disposable formatting harness has been removed.
 Branch: fix/issue-002-preserve-object-key-identity
 Base: `upstream/main@5b27f947f5d3e6de8702dc40d4054e02fbf4cdd8`
 Scope: Preserve independent class-object property identities, including unknown spread and computed keys.
-Commit: Pending.
-Push: Pending.
+Commit: 60b1ad8ab15a1af489d87e197571427aeafdd94b
+Push: MikeeI:fix/issue-002-preserve-object-key-identity
 Checks:
 
-- Implementation and focused regression verification are pending.
+- `pnpm run format --check` → passed.
+- `pnpm run lint` → passed with existing Knip configuration hints.
+- `pnpm run build` → passed.
+- `env npm_config_userconfig=/dev/null pnpm run test --run` → 120 passed, four existing skips.
+- Actual `clsx` round trips → unchanged static-collision, nested-spread, and escaped-duplicate results.
+
+## Publication-Draft
+
+Target: https://github.com/tailwindlabs/prettier-plugin-tailwindcss
+Base: `main`
+Head: `MikeeI:fix/issue-002-preserve-object-key-identity`
+Title: Preserve class-object property identities during sorting
+Approval: Pending.
+
+```markdown
+## Summary
+
+Sorting can merge distinct conditional keys or split duplicate identities, changing which property wins.
+For example, `clsx({ 'underline flex': true, 'flex underline': false })` loses its active classes.
+Plan actual serialized key identities before mutation and preserve unsafe identity groups.
+Keep collision-free supported static keys sortable, including duplicate cohorts that move together safely.
+Conservatively preserve keys under spread/computed composition without evaluating expressions.
+Carry full key context through global sorter reentry so identity plans and writes agree on whitespace.
+
+Previous class-key support: https://github.com/tailwindlabs/prettier-plugin-tailwindcss/pull/155
+
+## Verification
+
+- Added parser-family regressions for collisions, raw escapes, unknown composition, and global reentry.
+- Real `clsx` evaluation preserved static-collision, nested-spread, and escaped-duplicate results.
+- `pnpm run format --check`, `pnpm run lint`, and `pnpm run build` passed.
+- `pnpm run test --run`: 120 passed, four existing skips.
+
+Tested with Node.js 26.12.0, pnpm 10.28.2, and lockfile-pinned Prettier 3.9.6.
+The `src/config.ts` change is only repository-formatter normalization of an existing signature.
+
+### Disclosure
+
+Investigated thoroughly with `openai-codex/gpt-6.1-sol` (medium reasoning effort), using [Oh My Pi](https://github.com/can1357/oh-my-pi) as the agent framework.
+I thoroughly reviewed this contribution with `openai-codex/gpt-6.1-sol` (medium reasoning effort).
+
+This report is not generic or unreviewed AI-generated output.
+Its claims were checked against the cited evidence, and it includes the relevant detail intended to help maintainers resolve the issue.
+
+If reports like this are not useful to the project, please let me know and I will refrain from submitting similar ones.
+My intent is to help without wasting maintainer time or energy or discouraging their work.
+
+Thank you for your work.
+```

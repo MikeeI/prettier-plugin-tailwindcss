@@ -47,7 +47,7 @@ For trailing expression whitespace, inspect the beginning of the next quasi.
 
 - Preserve necessary separators for all existing helper callers.
 - Exclude nonadjacent quasis from each boundary decision.
-- Establish this correction before the Vue visitor migration proposed in `ISSUE-004`.
+- Treat this as independent from `ISSUE-004`, whose nested-concatenation fix can reuse the current helper unchanged.
 - Keep the whitespace-character-domain defect in `ISSUE-008` separate.
 
 ## Verification

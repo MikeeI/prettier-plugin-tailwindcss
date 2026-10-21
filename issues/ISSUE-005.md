@@ -1,6 +1,6 @@
 # ISSUE-005 — Glimmer class composition loses separators and token bindings
 
-State: Investigating
+State: PR-Ready
 Authorized-Work: Pull-Request-Implementation
 Publication-Target: New-pull-request
 External-Reference: Not published.
@@ -34,9 +34,16 @@ Severity: High.
 
 ## Prior-Art
 
-Coverage: The local index and active records were empty before allocation.
-Gaps: Upstream issues, PRs, discussions, releases, and linked forums have not been searched.
-Contribution fit: Unresolved until prior art and Glimmer composition compatibility are established.
+Coverage: Combined issue/PR searches covered Glimmer, Handlebars, concat, Svelte, and partial-token terms.
+All three Glimmer and 62 Svelte results were retrieved with `incomplete_results: false` on 2026-10-21.
+Relevant bodies, threads, reviews, and diffs were read.
+Gaps: Global discussion, release, and forum coverage is not exhaustive.
+
+- Related: https://github.com/tailwindlabs/prettier-plugin-tailwindcss/pull/119 introduces Glimmer concat edge protection.
+- Related: https://github.com/tailwindlabs/prettier-plugin-tailwindcss/pull/396 preserves nested-expression boundaries.
+
+Contribution fit: A new Glimmer PR extends the existing concat policy to both edges and AST forms.
+No identical active implementation was identified.
 
 ## Proposed-Change
 
@@ -57,15 +64,14 @@ Leave string fragments unchanged when their class boundaries cannot be establish
 
 ## Publication-Blockers
 
-Prior art and a minimal public reproduction repository remain missing.
+Publication requires approval of the exact Publication-Draft and recorded target.
 The user authorized this finding's PR implementation and a new GitHub PR on 2026-10-21.
-The exact external draft and target still require review before publication.
 
 ## Next-Action
 
-Summary: Search Glimmer composition prior art
-Action: Search upstream work for separators or prefix bindings lost in Glimmer class composition.
-Done-When: Relevant matches are classified and the owning thread or evidence gap is recorded.
+Summary: Approve exact pull request draft
+Action: Review and approve the exact Publication-Draft and its upstream/base/head target.
+Done-When: The user explicitly approves the unchanged full draft and exact target.
 
 ## Bug-Reproduction
 
@@ -97,8 +103,55 @@ The disposable source-plugin harness has been removed.
 Branch: fix/issue-005-preserve-glimmer-class-boundaries
 Base: `upstream/main@5b27f947f5d3e6de8702dc40d4054e02fbf4cdd8`
 Scope: Preserve separators and attached class-token fragments in Glimmer composition.
-Commit: Pending.
-Push: Pending.
+Commit: 52be5ac5bc82c8c44d84c16ca06425108cf1c39e
+Push: MikeeI:fix/issue-005-preserve-glimmer-class-boundaries
 Checks:
 
-- Implementation and focused regression verification are pending.
+- `pnpm run format --check` → passed.
+- `pnpm run lint` → passed with existing Knip configuration hints.
+- `pnpm run build` → passed.
+- `env npm_config_userconfig=/dev/null pnpm run test --run` → 114 passed, four existing skips.
+
+## Publication-Draft
+
+Target: https://github.com/tailwindlabs/prettier-plugin-tailwindcss
+Base: `main`
+Head: `MikeeI:fix/issue-005-preserve-glimmer-class-boundaries`
+Title: Preserve token boundaries in Glimmer class composition
+Approval: Pending.
+
+```markdown
+## Summary
+
+Glimmer class fragments can lose separators or move a token attached to another expression.
+For example, `class={{concat "flex " "block"}}` becomes a different class value after trimming.
+Handle both `MustacheStatement` and `SubExpression` forms of `concat`.
+Track enclosing composition on both edges and preserve externally attached first or last tokens.
+Known literal separators still allow independent inner classes to sort.
+
+Previous concat handling: https://github.com/tailwindlabs/prettier-plugin-tailwindcss/pull/119
+This extends that boundary policy without introducing a template evaluator.
+
+## Verification
+
+- Added built-plugin regressions for concat separators, nested prefix attachment, and conditional fragments.
+- Existing Glimmer parser and plugin-compatibility coverage passed.
+- `pnpm run format --check`, `pnpm run lint`, and `pnpm run build` passed.
+- `pnpm run test --run`: 114 passed, four existing skips.
+
+Tested with Node.js 26.12.0, pnpm 10.28.2, and lockfile-pinned Prettier 3.9.6.
+The `src/config.ts` change is only repository-formatter normalization of an existing signature.
+
+### Disclosure
+
+Investigated thoroughly with `openai-codex/gpt-6.1-sol` (medium reasoning effort), using [Oh My Pi](https://github.com/can1357/oh-my-pi) as the agent framework.
+I thoroughly reviewed this contribution with `openai-codex/gpt-6.1-sol` (medium reasoning effort).
+
+This report is not generic or unreviewed AI-generated output.
+Its claims were checked against the cited evidence, and it includes the relevant detail intended to help maintainers resolve the issue.
+
+If reports like this are not useful to the project, please let me know and I will refrain from submitting similar ones.
+My intent is to help without wasting maintainer time or energy or discouraging their work.
+
+Thank you for your work.
+```

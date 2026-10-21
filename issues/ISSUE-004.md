@@ -1,6 +1,6 @@
 # ISSUE-004 — Vue trims separators required by outer concatenations
 
-State: Investigating
+State: PR-Ready
 Authorized-Work: Pull-Request-Implementation
 Publication-Target: New-pull-request
 External-Reference: Not published.
@@ -33,38 +33,44 @@ Severity: High.
 
 ## Prior-Art
 
-Coverage: The local index and active records were empty before allocation.
-Gaps: Upstream issues, PRs, discussions, releases, and linked forums have not been searched.
-Contribution fit: Unresolved until prior art identifies whether an existing thread owns nested expression trimming.
+Coverage: The combined searches and open list recorded in `ISSUE-003` were checked on 2026-10-21.
+Relevant concatenation, interpolation, and escape threads were read.
+Gaps: Global forum and discussion coverage is not exhaustive.
+
+- Related: https://github.com/tailwindlabs/prettier-plugin-tailwindcss/pull/396 establishes the shared boundary policy.
+- Related: https://github.com/tailwindlabs/prettier-plugin-tailwindcss/pull/427 changes part of the existing template heuristic.
+- Distinct: https://github.com/tailwindlabs/prettier-plugin-tailwindcss/issues/328 is the closed JSX predecessor.
+
+Contribution fit: A new PR can migrate dynamic JS attributes to the existing concatenation policy.
+No competing active implementation was identified.
 
 ## Proposed-Change
 
 Use the common `canCollapseWhitespaceIn` boundary policy instead of the nearest-concatenation decision.
-Correct that helper under `ISSUE-007` before relying on it for this visitor.
+The nested-concatenation fix does not require changing the helper under `ISSUE-007`.
 
 ## Scope-and-Constraints
 
-- Preserve necessary separators across all enclosing concatenations and interpolations.
+- Preserve necessary separators across enclosing concatenations without claiming universal interpolation correctness.
 - Preserve existing sorting and optional whitespace preservation.
-- Keep the helper's wrong-quasi-edge defect in `ISSUE-007` as a distinct root cause and prerequisite.
+- Leave `ISSUE-007` unimplemented; its independent quasi-edge defect is not a prerequisite for this correction.
 
 ## Verification
 
 - Format and evaluate a nested Vue concatenation before and after the correction.
-- Require identical class tokens for the nested concatenation and the interpolation boundary scenario.
+- Require unchanged token identities in nested concatenations while preserving safe inner sorting.
 
 ## Publication-Blockers
 
-Prior art and a minimal public reproduction repository remain missing.
-The proposed dependency on `ISSUE-007` must be resolved without silently expanding implementation scope.
+Publication requires approval of the exact Publication-Draft and recorded target.
+Scope reuses the existing boundary policy; the independent `ISSUE-007` defect remains unresolved.
 The user authorized this finding's PR implementation and a new GitHub PR on 2026-10-21.
-The exact external draft and target still require review before publication.
 
 ## Next-Action
 
-Summary: Search Vue concatenation prior art
-Action: Search upstream work for Vue class expressions losing separators in nested concatenations.
-Done-When: Relevant reports are classified and the relationship to `ISSUE-007` is documented.
+Summary: Approve exact pull request draft
+Action: Review and approve the exact Publication-Draft and its upstream/base/head target.
+Done-When: The user explicitly approves the unchanged full draft and exact target.
 
 ## Bug-Reproduction
 
@@ -89,8 +95,55 @@ The disposable source-plugin harness has been removed.
 Branch: fix/issue-004-preserve-vue-class-separators
 Base: `upstream/main@5b27f947f5d3e6de8702dc40d4054e02fbf4cdd8`
 Scope: Preserve necessary separators in nested dynamic Vue class expressions.
-Commit: Pending.
-Push: Pending.
+Commit: a762ce905d22c992fbbec116e99f47bf7fcea237
+Push: MikeeI:fix/issue-004-preserve-vue-class-separators
 Checks:
 
-- Implementation and focused regression verification are pending.
+- `pnpm run format --check` → passed.
+- `pnpm run lint` → passed with existing Knip configuration hints.
+- `pnpm run build` → passed.
+- `env npm_config_userconfig=/dev/null pnpm run test --run` → 112 passed, four existing skips.
+
+## Publication-Draft
+
+Target: https://github.com/tailwindlabs/prettier-plugin-tailwindcss
+Base: `main`
+Head: `MikeeI:fix/issue-004-preserve-vue-class-separators`
+Title: Preserve separators in nested Vue class concatenations
+Approval: Pending.
+
+```markdown
+## Summary
+
+Dynamic Vue class attributes inspect only the nearest concatenation when deciding which edges to trim.
+In `('inline ' + 'sm:p-0 p-0 ') + 'block'`, formatting removes the separator before `block`.
+Use the existing `canCollapseWhitespaceIn` policy to accumulate enclosing concatenation boundaries.
+Keep sorting the independent classes inside the middle operand.
+Correct the existing fixture expectation that encoded the lost separator.
+
+Related boundary policy: https://github.com/tailwindlabs/prettier-plugin-tailwindcss/pull/396
+This does not change the shared helper's interpolation heuristic.
+
+## Verification
+
+- Added a built-plugin regression for nested Vue concatenation.
+- Existing Vue parser and plugin-compatibility coverage passed.
+- `pnpm run format --check`, `pnpm run lint`, and `pnpm run build` passed.
+- `pnpm run test --run`: 112 passed, four existing skips.
+
+Tested with Node.js 26.12.0, pnpm 10.28.2, and lockfile-pinned Prettier 3.9.6.
+The `src/config.ts` change is only repository-formatter normalization of an existing signature.
+
+### Disclosure
+
+Investigated thoroughly with `openai-codex/gpt-6.1-sol` (medium reasoning effort), using [Oh My Pi](https://github.com/can1357/oh-my-pi) as the agent framework.
+I thoroughly reviewed this contribution with `openai-codex/gpt-6.1-sol` (medium reasoning effort).
+
+This report is not generic or unreviewed AI-generated output.
+Its claims were checked against the cited evidence, and it includes the relevant detail intended to help maintainers resolve the issue.
+
+If reports like this are not useful to the project, please let me know and I will refrain from submitting similar ones.
+My intent is to help without wasting maintainer time or energy or discouraging their work.
+
+Thank you for your work.
+```
